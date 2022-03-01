@@ -7,21 +7,26 @@
 import SwiftUI
 import Combine
 
+class SwiftUIImagePickerViewObserver:ObservableObject {
+    @Published var showingOptions:Bool = false
+    @Published var showingAlert:Bool = false
+    @Published var isPresented:Bool = false
+    var pickerStyle:ImagePickerStyle? {
+        didSet {
+            self.isPresented.toggle()
+        }
+    }
+}
+
 public struct SwiftUIImagePickerView<Content:View>: View {
+    
+    @ObservedObject private var swiftUIImagePickerViewObserver:SwiftUIImagePickerViewObserver = SwiftUIImagePickerViewObserver()
+    
+    @Binding private var image:UIImage?
     
     private var imagePickerViewModel:ImagePickerViewModel = ImagePickerViewModel()
     
     private var content: ()->Content
-    
-    @State private var showingOptions:Bool = false
-    
-    @State private var isPresented:Bool = false
-    
-    @State private var showingAlert:Bool = false
-    
-    @State private var pickerStyle:ImagePickerStyle?
-    
-    @Binding private var image:UIImage?
     
     public init(image:Binding<UIImage?>, @ViewBuilder content: @escaping ()->Content) {
         self._image = image
@@ -36,15 +41,15 @@ public struct SwiftUIImagePickerView<Content:View>: View {
             handleTap()
         }
         
-        .actionSheet(isPresented: self.$showingOptions) {
+        .actionSheet(isPresented: self.$swiftUIImagePickerViewObserver.showingOptions) {
             generateActionSheet()
         }
         
-        .sheet(isPresented: self.$isPresented) {
+        .sheet(isPresented: self.$swiftUIImagePickerViewObserver.isPresented) {
             container()
         }
 
-        .alert(TITLE, isPresented: $showingAlert) {
+        .alert(TITLE, isPresented: $swiftUIImagePickerViewObserver.showingAlert) {
             alert()
         }
     
@@ -55,14 +60,14 @@ public struct SwiftUIImagePickerView<Content:View>: View {
     
     private func handleTap() {
         UIApplication.shared.endEditing()
-        self.showingOptions.toggle()
+        self.swiftUIImagePickerViewObserver.showingOptions.toggle()
     }
     
     @ViewBuilder
     private func container() -> some View {
-        switch pickerStyle {
-        case .camera: ImagePhotoLibraryPickerView(isPresented: self.$isPresented, model: imagePickerViewModel)
-        case .photoLibrary: ImageCameraPickerView(isPresented: self.$isPresented, model: imagePickerViewModel)
+        switch swiftUIImagePickerViewObserver.pickerStyle {
+        case .camera: ImagePhotoLibraryPickerView(isPresented: self.$swiftUIImagePickerViewObserver.isPresented, model: imagePickerViewModel)
+        case .photoLibrary: ImageCameraPickerView(isPresented: self.$swiftUIImagePickerViewObserver.isPresented, model: imagePickerViewModel)
         default: EmptyView()
         }
     }
@@ -76,10 +81,12 @@ public struct SwiftUIImagePickerView<Content:View>: View {
     private func generateActionSheet() -> ActionSheet {
         var buttons = [ActionSheet.Button]()
         ImagePickerStyle.allCases.forEach { btn in
-            buttons.append(Alert.Button.default(Text(btn.description)) {self.pickerStyle = btn})
+            buttons.append(Alert.Button.default(Text(btn.description)) {
+                self.swiftUIImagePickerViewObserver.pickerStyle = btn
+            })
         }
         if let _ = image {
-            buttons.append(Alert.Button.default(Text(ImagePickerStyle.delete.description)) {self.showingAlert.toggle()})
+            buttons.append(Alert.Button.default(Text(ImagePickerStyle.delete.description)) {self.swiftUIImagePickerViewObserver.showingAlert.toggle()})
         }
         buttons.append(Alert.Button.cancel(Text(CANCEL)))
         return ActionSheet(title: Text(OPTIONS), buttons: buttons)
