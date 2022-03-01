@@ -9,6 +9,5 @@ import SwiftUI
 import Combine
 
 struct ImagePickerViewModel {
-    var image:UIImage?
     var publisher = PassthroughSubject<UIImage?, Never>()
 }
