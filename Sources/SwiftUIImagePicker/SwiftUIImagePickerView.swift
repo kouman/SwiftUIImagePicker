@@ -86,7 +86,7 @@ public struct SwiftUIImagePickerView<Content:View>: View {
             })
         }
         if let _ = image {
-            buttons.append(Alert.Button.default(Text(ImagePickerStyle.delete.description)) {self.swiftUIImagePickerViewObserver.showingAlert.toggle()})
+            buttons.append(Alert.Button.destructive(Text(ImagePickerStyle.delete.description)) {self.swiftUIImagePickerViewObserver.showingAlert.toggle()})
         }
         buttons.append(Alert.Button.cancel(Text(CANCEL)))
         return ActionSheet(title: Text(OPTIONS), buttons: buttons)
