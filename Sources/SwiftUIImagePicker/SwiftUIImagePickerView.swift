@@ -20,7 +20,7 @@ class SwiftUIImagePickerViewObserver:ObservableObject {
 
 public struct SwiftUIImagePickerView<Content:View>: View {
     
-    @ObservedObject private var swiftUIImagePickerViewObserver:SwiftUIImagePickerViewObserver = SwiftUIImagePickerViewObserver()
+    @StateObject private var swiftUIImagePickerViewObserver:SwiftUIImagePickerViewObserver = SwiftUIImagePickerViewObserver()
     
     @Binding private var image:UIImage?
     
