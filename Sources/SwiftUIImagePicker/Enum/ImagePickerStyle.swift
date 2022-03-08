@@ -23,9 +23,9 @@ enum ImagePickerStyle:Int, Identifiable, CaseIterable, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .camera: return "Prendre une photo"
-        case .photoLibrary: return "Choisir une photo"
-        case .delete: return "Supprimer"
+        case .camera: return localizedTakeAPhoto
+        case .photoLibrary: return localizedChooseAPhoto
+        case .delete: return localizedDelete
         }
     }
 }

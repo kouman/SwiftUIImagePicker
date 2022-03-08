@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Kudeus
+
+  Created by Vincent on 08/03/2022.
+  
+*/
+
+"take_a_photo" = "ถ่ายรูปๆ";
+
+"choose_a_photo" = "เลือกรูปถ่าย";
+
+"cancel" = "ยกเลิก";
+
+"delete" = "ลบ";

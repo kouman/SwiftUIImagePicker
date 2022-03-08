@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  test
+
+  Created by Vincent on 08/03/2022.
+  
+*/
+
+"take_a_photo" = "Prendre une photo";
+
+"choose_a_photo" = "Choisir une photo";
+
+"cancel" = "Annuler";
+
+"delete" = "Supprimer";

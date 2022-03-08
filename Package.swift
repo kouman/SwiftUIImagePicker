@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftUIImagePicker",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v15)
     ],
@@ -17,7 +18,8 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftUIImagePicker",
-            dependencies: []),
+            dependencies: [],
+            resources: [.process("Resources")]),
         .testTarget(
             name: "SwiftUIImagePickerTests",
             dependencies: ["SwiftUIImagePicker"]),
