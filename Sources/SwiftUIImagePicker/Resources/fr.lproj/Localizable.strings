@@ -14,7 +14,7 @@
 
 "delete" = "Supprimer";
 
-"title" = "Etes-vous sûr de vouloir supprimer la photo ?";
+"are_you_sure_you_want_to_delete_the_photo" = "Etes-vous sûr de vouloir supprimer la photo ?";
 
 "yes" = "Oui";
 

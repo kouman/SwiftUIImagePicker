@@ -49,7 +49,7 @@ public struct SwiftUIImagePickerView<Content:View>: View {
             container()
         }
 
-        .alert(TITLE, isPresented: $swiftUIImagePickerViewObserver.showingAlert) {
+        .alert(localizedAreYouSureYouWantToDeleteThePhoto, isPresented: $swiftUIImagePickerViewObserver.showingAlert) {
             alert()
         }
     
@@ -74,8 +74,8 @@ public struct SwiftUIImagePickerView<Content:View>: View {
     
     @ViewBuilder
     private func alert() -> some View {
-        Button(role: .destructive) {self.image = nil} label: {Text(YES)}
-        Button(role: .cancel) {} label: { Text(NO) }
+        Button(role: .destructive) {self.image = nil} label: {Text(localizedYes)}
+        Button(role: .cancel) {} label: { Text(localizedNo) }
     }
     
     private func generateActionSheet() -> ActionSheet {
@@ -89,6 +89,6 @@ public struct SwiftUIImagePickerView<Content:View>: View {
             buttons.append(Alert.Button.destructive(Text(ImagePickerStyle.delete.description)) {self.swiftUIImagePickerViewObserver.showingAlert.toggle()})
         }
         buttons.append(Alert.Button.cancel(Text(localizedCancel)))
-        return ActionSheet(title: Text(OPTIONS), buttons: buttons)
+        return ActionSheet(title: Text(localizedOptions), buttons: buttons)
     }
 }

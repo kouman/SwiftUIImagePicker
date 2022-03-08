@@ -14,10 +14,10 @@
 
 "delete" = "ลบ";
 
-"title" = "Thai translation missing";
+"are_you_sure_you_want_to_delete_the_photo" = "คุณแน่ใจว่าต้องการลบรูปภาฟ";
 
-"yes" = "Thai";
+"yes" = "ใช่";
 
-"no" = "Thai";
+"no" = "ไม่";
 
-"options" = "Thai translation missing";
+"options" = "เลือกตัวเลือก";

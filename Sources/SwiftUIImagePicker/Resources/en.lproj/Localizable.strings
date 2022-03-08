@@ -14,7 +14,7 @@
 
 "delete" = "Delete";
 
-"title" = "Are you sure you want to delete the photo ?";
+"are_you_sure_you_want_to_delete_the_photo" = "Are you sure you want to delete the photo ?";
 
 "yes" = "Yes";
 
