@@ -47,6 +47,7 @@ public struct SwiftUIImagePickerView<Content:View>: View {
         
         .sheet(isPresented: self.$swiftUIImagePickerViewObserver.isPresented) {
             container()
+                .ignoresSafeArea()
         }
 
         .alert(localizedAreYouSureYouWantToDeleteThePhoto, isPresented: $swiftUIImagePickerViewObserver.showingAlert) {
