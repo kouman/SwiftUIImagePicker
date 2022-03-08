@@ -13,3 +13,11 @@
 "cancel" = "Annuler";
 
 "delete" = "Supprimer";
+
+"title" = "Etes-vous sûr de vouloir supprimer la photo ?";
+
+"yes" = "Oui";
+
+"no" = "Non";
+
+"options" = "Sélectionner une option";

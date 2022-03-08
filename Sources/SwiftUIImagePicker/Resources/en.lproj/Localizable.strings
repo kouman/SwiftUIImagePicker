@@ -13,3 +13,11 @@
 "cancel" = "Cancel";
 
 "delete" = "Delete";
+
+"title" = "Are you sure you want to delete the photo ?";
+
+"yes" = "Yes";
+
+"no" = "No";
+
+"options" = "Select an option";
